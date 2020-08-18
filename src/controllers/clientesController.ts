@@ -8,17 +8,18 @@ export interface clienteInterface{
 }
 
 
+const clientes:clienteInterface[]=[];
+
  class Clientes{
 
-    private clientes:clienteInterface[];
     constructor(){
-        this.clientes=[];
+        
     }
 
   
   async getClientes(parametros?:any):Promise<globalResponseInterface>{
         try {     
-            return returnData(this.clientes,1);
+            return returnData(clientes,1);
         } catch (error) {
             return returnData(null,0);
         }
@@ -26,8 +27,9 @@ export interface clienteInterface{
 
   async postCliente(parametros:clienteInterface):Promise<globalResponseInterface>{
         try {     
-            this.clientes.push(parametros);
-            return returnData(this.clientes,1);
+            clientes.push(parametros);
+            
+            return returnData(clientes,1);
         } catch (error) {
             return returnData(null,0);
         }

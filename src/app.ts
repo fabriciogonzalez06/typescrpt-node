@@ -9,7 +9,8 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
 
-app.get('/',routesIndex);
+app.use('/api',routesIndex);
+
 
 app.listen(3500,()=>{
     console.log('conectado en el puerto 3500');

@@ -6,23 +6,26 @@ import { globalResponseInterface } from '../utils/globalResponse';
 
 const router:Router  = Router();
 
-router.get('/', async (req: Request, res: Response) => {
+router.get('/clientes', async (req: Request, res: Response) => {
 
     const clientes = new Clientes();
 
     clientes.getClientes().then((result: globalResponseInterface) => {
-        res.send(result);
+        return (result.ok) ? res.status(200).send(result) : res.status(400).send(result);
     });
 });
 
-router.post('/', async (req: Request, res: Response) => {
+router.post('/clientes', async (req: Request, res: Response) => {
 
     const clientes = new Clientes();
     const params=req.body;
+    const result= await clientes.postCliente(params);
 
-    clientes.postCliente(params).then((result:globalResponseInterface)=>{
-        res.send(result);
-    });
+    if(result.body){
+        res.status(200).send(result);
+    }else{
+        res.status(400).send(result);
+    }
 });
 
 export default router;

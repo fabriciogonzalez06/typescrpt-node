@@ -1,8 +1,11 @@
-import {Router} from 'express';
+import express from 'express';
 
 import clientesRoutes from './clientesRoutes';
-const app=   Router();
+const app= express();
 
-app.get('/clientes',clientesRoutes);
+app.use('/administracion',clientesRoutes);
+
+
+
 
 export default app;
